@@ -14,7 +14,385 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      conversations: {
+        Row: {
+          context: Json
+          created_at: string
+          id: string
+          title: string
+          tool: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          context?: Json
+          created_at?: string
+          id?: string
+          title?: string
+          tool?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          context?: Json
+          created_at?: string
+          id?: string
+          title?: string
+          tool?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      messages: {
+        Row: {
+          content: string
+          conversation_id: string
+          created_at: string
+          id: string
+          role: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          conversation_id: string
+          created_at?: string
+          id?: string
+          role: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          conversation_id?: string
+          created_at?: string
+          id?: string
+          role?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notifications: {
+        Row: {
+          body: string | null
+          created_at: string
+          id: string
+          kind: string
+          read: boolean
+          title: string
+          user_id: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          kind?: string
+          read?: boolean
+          title: string
+          user_id: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          kind?: string
+          read?: boolean
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          first_name: string
+          grade: string
+          id: string
+          last_name: string
+          preferences: Json
+          school: string | null
+          theme: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          first_name?: string
+          grade?: string
+          id: string
+          last_name?: string
+          preferences?: Json
+          school?: string | null
+          theme?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          first_name?: string
+          grade?: string
+          id?: string
+          last_name?: string
+          preferences?: Json
+          school?: string | null
+          theme?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      quiz_attempts: {
+        Row: {
+          answers: Json
+          created_at: string
+          difficulty: string
+          id: string
+          percentage: number
+          questions: Json
+          recommendation: string | null
+          score: number
+          strengths: string[]
+          subject: string
+          topic: string | null
+          total: number
+          user_id: string
+          weak_areas: string[]
+        }
+        Insert: {
+          answers?: Json
+          created_at?: string
+          difficulty?: string
+          id?: string
+          percentage?: number
+          questions?: Json
+          recommendation?: string | null
+          score?: number
+          strengths?: string[]
+          subject: string
+          topic?: string | null
+          total?: number
+          user_id: string
+          weak_areas?: string[]
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          difficulty?: string
+          id?: string
+          percentage?: number
+          questions?: Json
+          recommendation?: string | null
+          score?: number
+          strengths?: string[]
+          subject?: string
+          topic?: string | null
+          total?: number
+          user_id?: string
+          weak_areas?: string[]
+        }
+        Relationships: []
+      }
+      saved_content: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          kind: string
+          meta: Json
+          subject: string | null
+          title: string
+          topic: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          kind?: string
+          meta?: Json
+          subject?: string | null
+          title: string
+          topic?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          kind?: string
+          meta?: Json
+          subject?: string | null
+          title?: string
+          topic?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      study_sessions: {
+        Row: {
+          completed: boolean
+          created_at: string
+          duration_seconds: number
+          ended_at: string | null
+          id: string
+          started_at: string
+          subject: string
+          topic: string | null
+          user_id: string
+        }
+        Insert: {
+          completed?: boolean
+          created_at?: string
+          duration_seconds?: number
+          ended_at?: string | null
+          id?: string
+          started_at?: string
+          subject: string
+          topic?: string | null
+          user_id: string
+        }
+        Update: {
+          completed?: boolean
+          created_at?: string
+          duration_seconds?: number
+          ended_at?: string | null
+          id?: string
+          started_at?: string
+          subject?: string
+          topic?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      study_tasks: {
+        Row: {
+          completed: boolean
+          created_at: string
+          day: string
+          end_time: string
+          id: string
+          kind: string
+          priority: string
+          start_time: string
+          subject: string
+          topic: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          completed?: boolean
+          created_at?: string
+          day?: string
+          end_time?: string
+          id?: string
+          kind?: string
+          priority?: string
+          start_time?: string
+          subject: string
+          topic?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          completed?: boolean
+          created_at?: string
+          day?: string
+          end_time?: string
+          id?: string
+          kind?: string
+          priority?: string
+          start_time?: string
+          subject?: string
+          topic?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      subjects: {
+        Row: {
+          color: string
+          created_at: string
+          exam_date: string | null
+          id: string
+          name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          color?: string
+          created_at?: string
+          exam_date?: string | null
+          id?: string
+          name: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          color?: string
+          created_at?: string
+          exam_date?: string | null
+          id?: string
+          name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      topics: {
+        Row: {
+          created_at: string
+          id: string
+          is_weak: boolean
+          mastery: number
+          name: string
+          status: string
+          subject_id: string | null
+          subject_name: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          is_weak?: boolean
+          mastery?: number
+          name: string
+          status?: string
+          subject_id?: string | null
+          subject_name?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          is_weak?: boolean
+          mastery?: number
+          name?: string
+          status?: string
+          subject_id?: string | null
+          subject_name?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "topics_subject_id_fkey"
+            columns: ["subject_id"]
+            isOneToOne: false
+            referencedRelation: "subjects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
