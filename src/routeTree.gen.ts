@@ -14,6 +14,9 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedPastPaperRouteImport } from './routes/_authenticated/past-paper'
+import { Route as AuthenticatedStudyGuideRouteImport } from './routes/_authenticated/study-guide'
+import { Route as AuthenticatedSummarizerRouteImport } from './routes/_authenticated/summarizer'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -39,18 +42,39 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedPastPaperRoute = AuthenticatedPastPaperRouteImport.update({
+  id: '/past-paper',
+  path: '/past-paper',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedStudyGuideRoute = AuthenticatedStudyGuideRouteImport.update({
+  id: '/study-guide',
+  path: '/study-guide',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedSummarizerRoute = AuthenticatedSummarizerRouteImport.update({
+  id: '/summarizer',
+  path: '/summarizer',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/past-paper': typeof AuthenticatedPastPaperRoute
+  '/study-guide': typeof AuthenticatedStudyGuideRoute
+  '/summarizer': typeof AuthenticatedSummarizerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/past-paper': typeof AuthenticatedPastPaperRoute
+  '/study-guide': typeof AuthenticatedStudyGuideRoute
+  '/summarizer': typeof AuthenticatedSummarizerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -59,12 +83,29 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/past-paper': typeof AuthenticatedPastPaperRoute
+  '/_authenticated/study-guide': typeof AuthenticatedStudyGuideRoute
+  '/_authenticated/summarizer': typeof AuthenticatedSummarizerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/reset-password' | '/dashboard'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/dashboard'
+    | '/past-paper'
+    | '/study-guide'
+    | '/summarizer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/reset-password' | '/dashboard'
+  to:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/dashboard'
+    | '/past-paper'
+    | '/study-guide'
+    | '/summarizer'
   id:
     | '__root__'
     | '/'
@@ -72,6 +113,9 @@ export interface FileRouteTypes {
     | '/auth'
     | '/reset-password'
     | '/_authenticated/dashboard'
+    | '/_authenticated/past-paper'
+    | '/_authenticated/study-guide'
+    | '/_authenticated/summarizer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -118,15 +162,42 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/past-paper': {
+      id: '/_authenticated/past-paper'
+      path: '/past-paper'
+      fullPath: '/past-paper'
+      preLoaderRoute: typeof AuthenticatedPastPaperRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/study-guide': {
+      id: '/_authenticated/study-guide'
+      path: '/study-guide'
+      fullPath: '/study-guide'
+      preLoaderRoute: typeof AuthenticatedStudyGuideRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/summarizer': {
+      id: '/_authenticated/summarizer'
+      path: '/summarizer'
+      fullPath: '/summarizer'
+      preLoaderRoute: typeof AuthenticatedSummarizerRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedPastPaperRoute: typeof AuthenticatedPastPaperRoute
+  AuthenticatedStudyGuideRoute: typeof AuthenticatedStudyGuideRoute
+  AuthenticatedSummarizerRoute: typeof AuthenticatedSummarizerRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedPastPaperRoute: AuthenticatedPastPaperRoute,
+  AuthenticatedStudyGuideRoute: AuthenticatedStudyGuideRoute,
+  AuthenticatedSummarizerRoute: AuthenticatedSummarizerRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
